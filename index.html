@@ -1,364 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quebec Public Service Finder — AI Transparency & Trust</title>
-<meta name="description" content="SOEN 357 Case Study: Quebec Public Service Finder with AI transparency, confidence, and citations.">
-<style>
-  :root{
-    --bg:#0b1220;
-    --card:#121a2b;
-    --muted:#a7b7da;
-    --text:#f1f5ff;
-    --accent:#60a5fa;
-    --accent-2:#7dd3fc;
-    --outline: rgba(255,255,255,0.08);
-    --good:#22c55e;
-    --warn:#f59e0b;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0;font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial}
-  body{
-    color:var(--text);
-    background:var(--bg) fixed no-repeat center/cover;
-    /* Replace with your own background image below */
-    background-image: linear-gradient(180deg, rgba(11,18,32,0.9), rgba(11,18,32,0.9)), url('assets/images/background.jpg');
-  }
-  .container{max-width:1100px;margin:0 auto;padding:24px}
-  header{
-    position:sticky; top:0; z-index:50;
-    background:linear-gradient(180deg, rgba(11,18,32,0.9), rgba(11,18,32,0.6));
-    border-bottom:1px solid var(--outline); backdrop-filter:saturate(140%) blur(8px);
-  }
-  nav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-  .brand{display:flex;align-items:center;gap:10px}
-  .brand b{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .navlinks a{color:var(--muted);text-decoration:none;border:1px solid var(--outline);border-radius:999px;padding:6px 10px;font-size:12px;margin:2px}
-  .navlinks a:hover{color:white}
-  .hero{padding:56px 0 18px;border-bottom:1px solid var(--outline)}
-  h1{font-size:38px;line-height:1.15;margin:12px 0}
-  h2{font-size:26px;margin:28px 0 8px}
-  h3{font-size:20px;margin:18px 0 8px;color:#dbe7ff}
-  p{margin:8px 0;color:#e8eeff}
-  .grid{display:grid;gap:18px}
-  .cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-  @media (max-width:900px){.cols-2,.cols-3{grid-template-columns:1fr}}
-  .card{background:rgba(14,22,40,0.9);border:1px solid var(--outline);border-radius:16px;padding:18px}
-  .chip{display:inline-block;border:1px solid var(--outline);border-radius:999px;padding:6px 10px;font-size:12px;color:var(--muted);margin:2px}
-  .tag{display:inline-block;border:1px solid var(--outline);border-radius:8px;padding:2px 8px;font-size:12px;color:var(--muted);margin:2px}
-  .kpi{display:flex;gap:8px;align-items:center}
-  .kpi b{font-size:22px}
-  .hr{height:1px;background:var(--outline);margin:14px 0}
-  .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#071021;font-weight:700;text-decoration:none}
-  .btn-outline{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid var(--outline);color:var(--text);text-decoration:none}
-  .placeholder{border:2px dashed rgba(255,255,255,0.2);border-radius:12px;height:160px;display:flex;align-items:center;justify-content:center;color:#cfe2ff}
-  .table{width:100%;border-collapse:collapse;font-size:14px}
-  .table th,.table td{border-bottom:1px solid var(--outline);padding:10px;text-align:left}
-  .legend{display:flex;gap:12px;flex-wrap:wrap}
-  .legend span{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:12px}
-  .dot{width:10px;height:10px;border-radius:50%}
-  .good{background:var(--good)} .warn{background:var(--warn)}
-  .foot{color:var(--muted);font-size:14px}
-  .lang{display:flex;gap:8px;align-items:center}
-  .lang button{background:transparent;border:1px solid var(--outline);color:var(--text);border-radius:999px;padding:4px 10px;cursor:pointer}
-  .lang button.active{background:rgba(255,255,255,0.1)}
-</style>
-<script>
-// Minimal bilingual toggle demo (static text swap). Replace with your own i18n if needed.
-document.addEventListener('DOMContentLoaded', () => {
-  const en = document.querySelectorAll('[data-en]');
-  const fr = document.querySelectorAll('[data-fr]');
-  function setLang(lang){
-    en.forEach(el=> el.style.display = (lang==='en' ? '' : 'none'));
-    fr.forEach(el=> el.style.display = (lang==='fr' ? '' : 'none'));
-    document.querySelectorAll('.lang button').forEach(b=>b.classList.remove('active'));
-    document.querySelector('.lang button[data-set="'+lang+'"]').classList.add('active');
-  }
-  document.querySelectorAll('.lang button').forEach(btn=>{
-    btn.addEventListener('click', ()=> setLang(btn.getAttribute('data-set')));
-  });
-  setLang('en');
-});
-</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quebec Public Service Finder — Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root{
+          --bg:#EAF2FF;      /* pastel page */
+          --panel:#F6FAFF;   /* card bg */
+          --ink:#1348FF;     /* vivid blue */
+          --text:#27324D;    /* body text */
+          --frame:#7CA5FF;   /* thin neon frame */
+          --shadow: 0 8px 30px rgba(19,72,255,0.08);
+          --mint:#A7F3D0;    /* CTA mint */
+          --mint-ink:#1B3A2E;
+          --pill:#FFFFFF;    /* navbar pill */
+        }
+        *{box-sizing:border-box}
+        html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+        body{background:var(--bg);color:var(--text)}
+        a{color:var(--ink);text-decoration:none}
+        .container{max-width:1160px;margin:0 auto;padding:24px}
+
+        /* NAV PILL */
+        .nav-wrap{position:sticky;top:16px;z-index:50}
+        .nav{background:var(--pill);border:2px solid var(--frame);
+             border-radius:999px;padding:10px 14px;box-shadow:var(--shadow);
+             display:flex;align-items:center;justify-content:space-between;gap:18px}
+        .brand{display:flex;gap:10px;align-items:center}
+        .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--ink)}
+        .brand b{color:var(--text)}
+        .menu{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+        .menu a{color:#4b5a7a;font-weight:600}
+        .cta{background:var(--mint);color:var(--mint-ink);padding:10px 16px;border-radius:999px;font-weight:700;border:none;cursor:pointer}
+
+        /* HERO */
+        .hero{padding:80px 0 40px;text-align:center}
+        .hero h1{font-size:12vw;line-height:0.95;color:var(--ink);margin:0}
+        .hero p{max-width:760px;margin:18px auto 0;font-size:18px;color:#3c4b6a}
+        .hero .cta{margin-top:24px;padding:14px 22px}
+
+        /* GRID + FRAMED CARDS */
+        .grid{display:grid;gap:22px}
+        .cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+        @media (max-width:1000px){.cols-2{grid-template-columns:1fr} .hero h1{font-size:16vw}}
+        .frame{background:var(--panel);border:2px solid var(--frame);border-radius:18px;padding:28px;min-height:260px;box-shadow:var(--shadow)}
+        .title{color:var(--ink);font-size:40px;margin:0 0 10px}
+        .placeholder{height:180px;border:2px dashed var(--frame);border-radius:14px;display:flex;align-items:center;justify-content:center;color:#4973ff;font-weight:600;background:#fff}
+        footer{padding:30px 0 60px;color:#63708d}
+    </style>
 </head>
 <body>
-<header>
-  <div class="container">
-    <nav>
-      <div class="brand"><span class="chip">SOEN 357</span><b>Quebec Public Service Finder</b></div>
-      <div class="lang">
-        <button data-set="en" class="active">EN</button>
-        <button data-set="fr">FR</button>
-      </div>
-      <div class="navlinks">
-        <a href="#problem">Problem</a>
-        <a href="#research">Research</a>
-        <a href="#personas">Personas</a>
-        <a href="#journeys">Journeys</a>
-        <a href="#wireframes">Wireframes</a>
-        <a href="#design">Design</a>
-        <a href="#ethics">Ethics</a>
-        <a href="#iterations">Iterations</a>
-        <a href="#final">Mockups</a>
-        <a href="#appendix">Appendix</a>
-      </div>
-    </nav>
-  </div>
-</header>
+<div class="container nav-wrap">
+    <div class="nav">
+        <div class="brand"><span class="dot"></span><b>AI-powered service</b></div>
+        <div class="menu">
+            <a href="#home">Home</a>
+            <a href="#understand">Understand the Problem</a>
+            <a href="#research">Research and Analysis</a>
+            <a href="#goals">Define User Goals</a>
+            <a href="#prototype">Create Prototype</a>
+        </div>
+        <button class="cta" onclick="location.href='#prototype'">Get Started</button>
+    </div>
+</div>
 
-<section class="hero container">
-  <div data-en>
-    <h1>Transparent AI to navigate Quebec services</h1>
-    <p>Recommendations for RAMQ, SAAQ, childcare subsidies, and employment programs—with confidence, sources, and clear limits.</p>
-  </div>
-  <div data-fr>
-    <h1>Une IA transparente pour naviguer les services du Québec</h1>
-    <p>Recommandations pour la RAMQ, la SAAQ, les subventions de garde et les programmes d’emploi—with confiance, sources et limites claires.</p>
-  </div>
-  <div>
-    <span class="chip">Citations</span>
-    <span class="chip">Confidence badges</span>
-    <span class="chip">Human escalation</span>
-    <span class="chip">FR/EN</span>
-    <span class="chip">Privacy controls</span>
-  </div>
+<section id="home" class="hero container">
+    <h1>AI - powered<br>service</h1>
+    <p>Quebec Public Service Finder — recommendations for RAMQ, SAAQ, childcare subsidies, and employment programs, presented with confidence, sources, and clear limits.</p>
+    <button class="cta" onclick="location.href='#understand'">Start Filling Sections</button>
 </section>
 
-<div class="container">
-  <section id="problem" class="grid cols-2" style="margin-top:22px">
-    <div class="card">
-      <h2>1) Problem & Goals</h2>
-      <p><b>Core issue:</b> Citizens struggle to find reliable, current info for public services. AI can help—but only if users trust it.</p>
-      <div class="hr"></div>
-      <ul>
-        <li>Clarify when to rely on AI vs. official pages or agents.</li>
-        <li>Show <b>how</b> answers were derived (sources, timestamps).</li>
-        <li>Communicate <b>uncertainty</b> with confidence bands and safe defaults.</li>
-        <li>Respect privacy with explicit consent and retention choices.</li>
-      </ul>
-      <div class="legend">
-        <span><i class="dot good"></i><span>Safe to act</span></span>
-        <span><i class="dot warn"></i><span>Verify with official site</span></span>
-      </div>
+<div class="container" id="understand">
+    <div class="frame">
+        <h2 class="title">Understand the Problem</h2>
+        <div class="placeholder" style="margin-top:14px">Write your 2–3 sentence problem statement here</div>
     </div>
-    <div class="card">
-      <h2>Design Principles</h2>
-      <ul>
-        <li><b>Explainable</b>: citations, reasoning summary, confidence.</li>
-        <li><b>Controllable</b>: strict mode (official sources only), opt-out of retention.</li>
-        <li><b>Accountable</b>: disclaimers, quick human escalation.</li>
-        <li><b>Inclusive</b>: FR/EN, plain language, WCAG-conscious.</li>
-      </ul>
-      <div class="hr"></div>
-      <div class="grid cols-2">
-        <div class="kpi"><b>-40%</b><span>Time-to-answer target</span></div>
-        <div class="kpi"><b>90%</b><span>Users understand limits</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="research" style="margin-top:28px">
-    <div class="card">
-      <h2>2) Research & Analysis</h2>
-      <div class="grid cols-3">
-        <div>
-          <h3>Comparative Scan</h3>
-          <ul>
-            <li>Confidence + last-reviewed</li>
-            <li>Inline citations</li>
-            <li>Visible human escalation</li>
-          </ul>
-        </div>
-        <div>
-          <h3>User Interviews (n=6)</h3>
-          <p class="foot">“I trust answers with official links and warnings if rules changed.”</p>
-          <ul>
-            <li>Non-technical users want plain language</li>
-            <li>Need eligibility clarity</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Risks & Mitigations</h3>
-          <table class="table">
-            <tr><th>Risk</th><th>Mitigation</th></tr>
-            <tr><td>Outdated info</td><td>Timestamps, warnings, official links</td></tr>
-            <tr><td>Hallucination</td><td>Strict retrieval; citations required</td></tr>
-            <tr><td>Overreliance</td><td>Confidence bands; verify prompts</td></tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="personas" class="grid cols-3" style="margin-top:28px">
-    <div class="card">
-      <h2>Marie — International Student</h2>
-      <p><b>Goal:</b> RAMQ eligibility</p><p><b>Pain:</b> Residency criteria unclear</p>
-      <span class="tag">FR/EN toggle</span> <span class="tag">Simple steps</span>
-    </div>
-    <div class="card">
-      <h2>Jean — Senior</h2>
-      <p><b>Goal:</b> Renew health card</p><p><b>Pain:</b> Distrusts bots; needs phone support</p>
-      <span class="tag">Large text</span> <span class="tag">Phone visible</span>
-    </div>
-    <div class="card">
-      <h2>Aisha — Parent</h2>
-      <p><b>Goal:</b> Childcare subsidy</p><p><b>Pain:</b> Time pressure; concise answers</p>
-      <span class="tag">Short answers</span> <span class="tag">Confidence badges</span>
-    </div>
-  </section>
-
-  <section id="journeys" class="grid cols-2" style="margin-top:28px">
-    <div class="card">
-      <h2>4) Journey — Marie</h2>
-      <ol>
-        <li>Choose “RAMQ eligibility”</li>
-        <li>See transparency header (what AI can/can’t do)</li>
-        <li>Get steps + <b>confidence 82%</b> + 3 citations</li>
-        <li>Open official link</li>
-        <li>Option: Talk to an agent</li>
-      </ol>
-    </div>
-    <div class="card">
-      <h2>Requirements</h2>
-      <ul>
-        <li>R1: Confidence & last-updated per answer</li>
-        <li>R2: One-click official sources</li>
-        <li>R3: Human escalation & callback</li>
-        <li>R4: Consent & privacy controls</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="wireframes" style="margin-top:28px">
-    <div class="card">
-      <h2>5) Low-Fi Wireframes</h2>
-      <div class="grid cols-3">
-        <div class="placeholder">Upload: assets/images/sketch-landing.jpg</div>
-        <div class="placeholder">Upload: assets/images/sketch-chat.jpg</div>
-        <div class="placeholder">Upload: assets/images/sketch-consent.jpg</div>
-      </div>
-      <p class="foot">Replace each placeholder with your PNG/JPG:</p>
-      <pre class="foot">&lt;img src="assets/images/sketch-landing.jpg" alt="Landing sketch" width="100%"&gt;</pre>
-    </div>
-  </section>
-
-  <section id="design" class="grid cols-2" style="margin-top:28px">
-    <div class="card">
-      <h2>6) Transparency UI</h2>
-      <ul>
-        <li><b>Answer card</b>: summary, confidence, last-updated, citations</li>
-        <li><b>Reasoning peek</b>: 2–3 bullets in plain language</li>
-        <li><b>Mode</b>: Strict (official only) / Balanced</li>
-        <li><b>Safety</b>: Critical topics auto-suggest “Verify with agent”</li>
-      </ul>
-      <div class="hr"></div>
-      <h3>Example Answer</h3>
-      <div class="card" style="background:#0e1628">
-        <p><b>Q:</b> Am I eligible for RAMQ?</p>
-        <p><b>A:</b> Likely yes based on residency. <span class="chip">Confidence: 82%</span></p>
-        <p class="foot">Last updated: 2025‑09‑15 • <a href="#">RAMQ official</a> • <a href="#">Quebec.ca</a></p>
-        <div><span class="tag">Residency ≥ 6 months</span><span class="tag">Student permit</span><span class="tag">Source matched</span></div>
-      </div>
-    </div>
-    <div class="card">
-      <h2>7) Visual Design</h2>
-      <p>Quebec blue theme, high contrast, bilingual microcopy.</p>
-      <div>
-        <span class="chip">Inter / System UI</span>
-        <span class="chip">Blue + Ice</span>
-        <span class="chip">Rounded corners</span>
-      </div>
-      <div class="hr"></div>
-      <h3>Microcopy</h3>
-      <ul>
-        <li>“May be outdated. Check sources.”</li>
-        <li>“Open official page” • “Verify with agent”</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="ethics" class="grid cols-2" style="margin-top:28px">
-    <div class="card">
-      <h2>8) Ethics & Consent</h2>
-      <ul>
-        <li>Use department consent form</li>
-        <li>Explain purpose, storage, withdrawal rights</li>
-        <li>Anonymous notes; remove after grading</li>
-      </ul>
-      <p class="foot">Upload signed forms to Moodle (not on public site).</p>
-    </div>
-    <div class="card">
-      <h2>Usability Testing</h2>
-      <ul>
-        <li>Task success ≤ 2 minutes</li>
-        <li>Trust understanding ≥ 4/5</li>
-        <li>Confusion → iteration</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="iterations" style="margin-top:28px">
-    <div class="card">
-      <h2>9) Iterations</h2>
-      <div class="grid cols-3">
-        <div class="card"><h3>v1 — Baseline</h3><p>No confidence shown → over-trust.</p></div>
-        <div class="card"><h3>v2 — Confidence</h3><p>Added bands + verify tag.</p></div>
-        <div class="card"><h3>v3 — Human Help</h3><p>Agent callback for critical topics.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="final" style="margin-top:28px">
-    <div class="card">
-      <h2>10) Final Mockups</h2>
-      <div class="grid cols-3">
-        <div class="placeholder">Upload: assets/images/hi-landing.jpg</div>
-        <div class="placeholder">Upload: assets/images/hi-chat.jpg</div>
-        <div class="placeholder">Upload: assets/images/hi-consent.jpg</div>
-      </div>
-      <div style="margin-top:12px">
-        <a class="btn" href="#download">Export PDF</a>
-        <a class="btn-outline" href="#appendix">Appendix</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="appendix" class="grid cols-2" style="margin-top:28px">
-    <div class="card">
-      <h2>Appendix — Research Artifacts</h2>
-      <ul>
-        <li>Interview script & anonymized notes</li>
-        <li>Questionnaire results</li>
-        <li>Comparative scan links</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h2>Team & Credits</h2>
-      <table class="table">
-        <tr><th>Member</th><th>Role</th><th>Contrib</th></tr>
-        <tr><td>Member A</td><td>Research</td><td>Interviews, scan</td></tr>
-        <tr><td>Member B</td><td>UX</td><td>Personas, journeys</td></tr>
-        <tr><td>Member C</td><td>UI</td><td>Wireframes, mockups</td></tr>
-        <tr><td>Member D</td><td>Writer</td><td>Site copy, editing</td></tr>
-      </table>
-    </div>
-  </section>
-
-  <section id="download" style="margin:28px 0 40px">
-    <div class="card">
-      <h2>Export</h2>
-      <p>Print this page → Save as PDF for Moodle.</p>
-      <p class="foot">Replace placeholders with your own images before exporting.</p>
-    </div>
-  </section>
-
-  <footer class="container foot" style="padding-bottom:40px">
-    <div class="hr"></div>
-    <p>© 2025 — SOEN 357 — Quebec Public Service Finder — AI Transparency & Trust</p>
-  </footer>
 </div>
+
+<div class="container" id="research">
+    <div class="frame">
+        <h2 class="title">Research and Analysis</h2>
+        <div class="placeholder" style="margin-top:14px">Add bullets or paste a small table of findings</div>
+    </div>
+</div>
+
+<div class="container" id="goals">
+    <div class="frame">
+        <h2 class="title">Define User Goals</h2>
+        <div class="placeholder" style="margin-top:14px">List personas & their goals (short)</div>
+    </div>
+</div>
+
+<div class="container" id="prototype">
+    <div class="frame">
+        <h2 class="title">Create Prototype</h2>
+        <div class="grid cols-2" style="margin-top:14px">
+            <div class="placeholder">Upload sketch/wireframe image</div>
+            <div class="placeholder">Upload hi-fidelity mockup</div>
+        </div>
+    </div>
+</div>
+
+<footer class="container">
+    <p>© 2025 — SOEN 357 — Quebec Public Service Finder — Template</p>
+</footer>
 </body>
 </html>
