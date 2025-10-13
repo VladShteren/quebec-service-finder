@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AI-powered Service Finder — UX Case Study</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
-        :root {
+        :root{
           --ink:#1A1A1A;
           --accent:#2962FF;                 /* blue for buttons + section titles only */
-          --bg-gradient:linear-gradient(180deg, #f4f7ff 0%, #ffffff 100%);
+          --bg-gradient:linear-gradient(180deg,#f4f7ff 0%,#ffffff 100%);
           --nav-bg:#ffffff;
           --muted:#555;
           --divider:#E0E6F0;
           --maxw:740px;
-          --nav-offset:120px;
+          --nav-offset:120px;               /* avoids title being hidden by sticky nav */
         }
 
-        *{box-sizing:border-box;}
+        *{box-sizing:border-box}
         html,body{
           margin:0;padding:0;
           font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial;
@@ -29,8 +29,7 @@
 
         /* ===== Navigation ===== */
         .nav-wrap{
-          position:sticky;
-          top:0;
+          position:sticky;top:0;
           background:var(--nav-bg);
           backdrop-filter:blur(10px);
           border-bottom:1px solid var(--divider);
@@ -39,99 +38,53 @@
           box-shadow:0 2px 10px rgba(0,0,0,0.05);
         }
         .menu{
-          display:flex;
-          justify-content:center;
-          align-items:center;
-          gap:36px;
+          display:flex;justify-content:center;align-items:center;gap:36px;
         }
         .menu a{
           color:var(--muted);
           text-decoration:none;
-          font-weight:600;
-          font-size:16px;
-          padding:6px 10px;
-          border-radius:8px;
+          font-weight:600;font-size:16px;
+          padding:6px 10px;border-radius:8px;
           transition:color .2s ease, background .2s ease;
         }
-        .menu a:hover{
-          color:var(--accent);
-          background:rgba(41,98,255,0.08);
-        }
-        .menu a.active{
-          color:#fff;
-          background:var(--accent);
-          box-shadow:0 3px 10px rgba(41,98,255,0.25);
-        }
+        .menu a:hover{color:var(--accent);background:rgba(41,98,255,0.08)}
+        .menu a.active{color:#fff;background:var(--accent);box-shadow:0 3px 10px rgba(41,98,255,0.25)}
 
         /* ===== Layout ===== */
-        main{max-width:var(--maxw);margin:0 auto;padding:50px 20px;}
-        section{
-          margin-bottom:90px;
-          scroll-margin-top:var(--nav-offset);
-        }
-        img{width:100%;border-radius:10px;margin:24px 0;}
+        main{max-width:var(--maxw);margin:0 auto;padding:50px 20px}
+        section{margin-bottom:90px;scroll-margin-top:var(--nav-offset)}
+        img{width:100%;border-radius:10px;margin:24px 0}
 
         /* ===== Typography ===== */
         h1{
           font-size:clamp(32px,6vw,52px);
-          font-weight:700;
-          line-height:1.2;
-          margin-bottom:12px;
-          color:var(--ink);
+          font-weight:700;line-height:1.2;margin-bottom:12px;
+          color:var(--ink);                 /* keep neutral */
         }
         h2{
-          font-size:26px;
-          margin-top:70px;
-          margin-bottom:8px;
-          color:var(--accent); /* blue only for section titles */
+          font-size:26px;margin-top:70px;margin-bottom:8px;
+          color:var(--accent);              /* blue only for section titles */
         }
-        h3{
-          font-size:20px;
-          margin-top:36px;
-          color:var(--ink);
-        }
-        p{font-size:17px;color:var(--ink);margin:10px 0 22px;}
-        ul,ol{margin:10px 0 24px 20px;font-size:17px;}
-        li{margin-bottom:8px;}
-        .subtitle{font-size:19px;color:var(--muted);margin-top:4px;margin-bottom:26px;}
+        h3{font-size:20px;margin-top:32px;color:var(--ink)}
+        p{font-size:17px;margin:10px 0 22px}
+        ul,ol{margin:10px 0 24px 20px;font-size:17px}
+        li{margin-bottom:8px}
+        .subtitle{font-size:19px;color:var(--muted);margin-top:4px;margin-bottom:26px}
         .highlight{
           border-left:4px solid var(--accent);
           background:#F2F6FF;
-          padding:10px 16px;
-          border-radius:4px;
-          margin:20px 0;
+          padding:10px 16px;border-radius:4px;margin:20px 0;
         }
         table{
-          width:100%;
-          border-collapse:collapse;
-          margin:22px 0;
-          font-size:15px;
+          width:100%;border-collapse:collapse;margin:22px 0;font-size:15px;
         }
-        th,td{
-          padding:10px;
-          border-bottom:1px solid #dce1f4;
-          vertical-align:top;
-        }
-        th{
-          color:var(--ink);
-          text-align:left;
-          background:#f8faff;
-        }
-        hr{
-          border:none;
-          border-bottom:1px solid var(--divider);
-          margin:60px 0;
-        }
-        footer{
-          text-align:center;
-          font-size:15px;
-          color:var(--muted);
-          border-top:1px solid var(--divider);
-          padding:40px 0;
-        }
+        th,td{padding:10px;border-bottom:1px solid #dce1f4;vertical-align:top}
+        th{color:var(--ink);text-align:left;background:#f8faff}
+        hr{border:none;border-bottom:1px solid var(--divider);margin:60px 0}
+        footer{text-align:center;font-size:15px;color:var(--muted);border-top:1px solid var(--divider);padding:40px 0}
 
-        @media (max-width: 640px){
-          :root{ --nav-offset:96px; }
+        @media (max-width:640px){
+          :root{--nav-offset:96px}
         }
     </style>
 </head>
@@ -141,7 +94,7 @@
 <nav class="nav-wrap">
     <div class="menu">
         <a href="#home" class="active">Home</a>
-        <a href="#understand">Understand</a>
+        <a href="#problem">Understand</a>
         <a href="#research">Research</a>
         <a href="#goals">Goals</a>
         <a href="#prototype">Prototype</a>
@@ -153,40 +106,39 @@
     <!-- ===== Hero ===== -->
     <section id="home">
         <h1>AI-powered Service Finder</h1>
-        <p class="subtitle">A UX case study on building trust, transparency, and actionability into Montréal’s digital activity discovery experience.</p>
-        <p>Many travel and local activity platforms today rely on generic AI suggestions detached from cultural or contextual nuance. Our challenge: design a transparent, explainable, and community-driven system that builds user trust through ethical AI and local participation.</p>
+        <p class="subtitle">A UX case study on building trust, transparency, and actionability into Montréal’s activity discovery experience.</p>
+        <p>Most “smart” travel tools feel the same—generic suggestions, unclear reasoning, and links that go nowhere. Our goal is different: design a Montréal-first experience that’s transparent, current, and immediately useful.</p>
     </section>
 
-    <hr>
+    <hr />
 
-    <!-- ===== Problem ===== -->
-    <section id="understand">
+    <!-- ===== 1. Problem ===== -->
+    <section id="problem">
         <h2>Understanding the challenge</h2>
-        <p><strong>Finding things to do in Montréal can be confusing</strong> for both tourists and locals. While many travel search platforms and AI-powered tools exist, they are often generic, inaccurate, or detached from local context.</p>
+        <p><strong>Finding things to do in Montréal is harder than it should be.</strong> Plenty of platforms and AI helpers exist, but they’re often generic, outdated, or detached from the local vibe.</p>
 
-        <p><strong>Tourists frequently face issues such as:</strong></p>
+        <h3>What goes wrong today</h3>
         <ul>
-            <li>Outdated or incomplete event and venue data.</li>
-            <li>Recommendations that don’t match their interests, time, or location.</li>
-            <li>Lack of trust in AI-generated results (“Where does this info come from?”).</li>
-            <li>Difficulty understanding how or why suggestions are made.</li>
-            <li>Inability to directly act — no clear links to official sites or maps.</li>
+            <li>Event and venue info is often <strong>outdated or incomplete</strong>.</li>
+            <li>Suggestions ignore <strong>interests, timing, or location</strong>.</li>
+            <li>Users don’t know <strong>where information comes from</strong> or <strong>why</strong> it’s being suggested.</li>
+            <li>It’s hard to <strong>act</strong> — no clear links to official sites, bookings, or maps.</li>
         </ul>
 
-        <p><strong>Locals</strong> want to discover hidden gems and community-based events that global platforms overlook. However, there’s <strong>no central, trustworthy Montréal platform</strong> that blends personalization, transparency, and community input while giving users direct, actionable access.</p>
+        <p><strong>Locals</strong> want truly local picks and community events — the things big platforms miss. And there’s still <strong>no single, trustworthy hub for Montréal</strong> that’s personalized, transparent, and action-ready.</p>
 
         <div class="highlight">
-            <strong>Problem Statement:</strong><br>
-            Design an AI-powered Montréal activity app that facilitates transparent, explainable, and actionable recommendations. It should show reasoning, cite data sources, allow local contributions, and link directly to bookings or maps — building trust through ethical design.
+            <strong>Problem Statement</strong><br />
+            Build an AI-powered Montréal activity app that is <em>transparent, explainable, and actionable</em>. It should show the “how” and “why” behind suggestions, stay fresh through local contributions, cite credible sources, and provide direct actions like booking links and maps — all grounded in ethical, explainable AI.
         </div>
     </section>
 
-    <hr>
+    <hr />
 
-    <!-- ===== Research ===== -->
+    <!-- ===== 2. Research & Analysis ===== -->
     <section id="research">
         <h2>Research and analysis</h2>
-        <p>To understand how users find activities and what gaps exist in AI-based travel tools, we analyzed major platforms using AI for trip or event recommendations. We focused on transparency, adaptability to Montréal, and user trust.</p>
+        <p>We reviewed AI-based travel and activity tools to see how they explain recommendations, adapt to Montréal, offer actionable next steps, and build (or erode) trust.</p>
 
         <table>
             <thead>
@@ -200,88 +152,151 @@
             <tbody>
             <tr>
                 <td><strong>TripPlanner.ai</strong></td>
-                <td>Trip planning (flights, hotels, itineraries)</td>
-                <td>Automated full trip coverage with lodging and sightseeing.</td>
-                <td>Generic, lacks local flavor; no transparency on data or logic.</td>
+                <td>End-to-end trip planning</td>
+                <td>Automates flights, hotels, and sightseeing.</td>
+                <td>Too broad; thin local context; limited transparency on data or logic.</td>
             </tr>
             <tr>
                 <td><strong>GuideGeek.com</strong></td>
                 <td>Conversational travel AI</td>
-                <td>Chat-like personal interaction, accessible tone.</td>
-                <td>Accuracy inconsistent; opaque reasoning; few Montréal tips.</td>
+                <td>Friendly, chat-based experience.</td>
+                <td>Inconsistent accuracy; opaque reasoning; few Montréal-specific tips.</td>
             </tr>
             <tr>
                 <td><strong>Copilot2Trip.com</strong></td>
-                <td>AI itinerary generator</td>
-                <td>Modern UI, fast and dynamic.</td>
-                <td>Outdated data; poor onboarding; low credibility cues.</td>
+                <td>AI itinerary generation</td>
+                <td>Fast, modern UI.</td>
+                <td>Outdated data; confusing onboarding; weak credibility signals.</td>
             </tr>
             <tr>
                 <td><strong>Yelp</strong></td>
-                <td>Reviews and listings</td>
-                <td>Strong user trust and community validation.</td>
-                <td>Business-oriented; lacks event discovery and AI curation.</td>
+                <td>Reviews & listings</td>
+                <td>Strong community input and trust.</td>
+                <td>Business-centric; not itinerary-friendly; no guided AI flow.</td>
             </tr>
             <tr>
                 <td><strong>TripAdvisor</strong></td>
-                <td>Activities and global recommendations</td>
-                <td>Large dataset; semi-AI experience.</td>
-                <td>No direct booking or maps; limited Montréal localization.</td>
+                <td>Global activities (with AI)</td>
+                <td>Large database; hybrid suggestions.</td>
+                <td>Limited transparency; Montréal context is weak; actions are indirect.</td>
             </tr>
             </tbody>
         </table>
 
-        <h3>Key Insights</h3>
-        <ol>
-            <li><strong>Lack of transparency</strong> — users can’t see how AI makes choices.</li>
-            <li><strong>Data staleness</strong> — outdated listings, few local updates.</li>
-            <li><strong>Weak trust indicators</strong> — no citations or validation.</li>
-            <li><strong>Limited Montréal context</strong> — cultural and seasonal gaps.</li>
-            <li><strong>Inactionable UX</strong> — missing direct booking and maps.</li>
-        </ol>
+        <h3>What’s missing across the board</h3>
+        <ul>
+            <li><strong>Transparency:</strong> Users rarely see the reasoning or sources behind suggestions.</li>
+            <li><strong>Freshness:</strong> Listings go stale without local/business contributions.</li>
+            <li><strong>Montréal context:</strong> Seasonal, bilingual, and neighborhood details are overlooked.</li>
+            <li><strong>Trust cues:</strong> Few citations, confidence indicators, or community validation.</li>
+            <li><strong>Actionability:</strong> Not enough “book now,” official links, or map actions.</li>
+        </ul>
+
+        <h3>What users expect</h3>
+        <ul>
+            <li>Clear “<strong>why this?</strong>” reasoning and source visibility.</li>
+            <li>Up-to-date, trustworthy, bilingual information.</li>
+            <li>One-tap actions: book, view on map, contact.</li>
+            <li>A balance of local gems and popular attractions.</li>
+        </ul>
 
         <h3>Opportunity</h3>
         <ul>
-            <li><strong>AI-guided discovery:</strong> Conversational search for Montréal events.</li>
-            <li><strong>Transparency:</strong> Show reasoning and confidence scores.</li>
-            <li><strong>Actionable design:</strong> Direct access to booking, maps, or contact info.</li>
-            <li><strong>Community-driven freshness:</strong> Verified local data submissions.</li>
+            <li><strong>AI-guided discovery:</strong> A smart, chat-assisted flow for events, cafés, and attractions.</li>
+            <li><strong>Explainability:</strong> Plain-language reasons, sources, and confidence levels.</li>
+            <li><strong>Actionable design:</strong> Booking links, maps, and contacts on every listing.</li>
+            <li><strong>Community freshness:</strong> Let locals and businesses submit and verify updates.</li>
+            <li><strong>Trust-first UX:</strong> Verified badges, timestamps, and transparent signals.</li>
         </ul>
 
         <div class="highlight">
-            <strong>Design Goal:</strong><br>
-            Build a Montréal-first activity finder that merges AI guidance, transparency, and local authenticity — empowering users with explainable, trustworthy recommendations.
+            <strong>Design Goal</strong><br />
+            Deliver a Montréal-first activity finder that blends conversational AI, transparent recommendations, and direct actions — powered by local authenticity and community participation.
         </div>
     </section>
 
-    <hr>
+    <hr />
 
-    <!-- ===== Personas / Goals ===== -->
+    <!-- ===== 3. User Personas ===== -->
     <section id="goals">
         <h2>Defining user goals</h2>
-        <p>Three key user types emerged during research. Each represents a core motivation and expectation from our system.</p>
 
-        <img src="assets/images/persona 1.jpg" alt="Tourist Explorer">
-        <h3>Tourist Explorer</h3>
-        <p>Weekend ideas with direct booking and authentic local vibes.</p>
+        <h3>Anna — The Curious Tourist</h3>
+        <p><strong>Goals:</strong> Find authentic experiences that match her interests, get quick suggestions without fiddling with filters, understand why things are recommended, and act fast with directions and booking — in English or French.</p>
+        <p><strong>Key Requirements:</strong> Plain-language AI explanations (“because you liked…”), bilingual UI, Google Maps integration, visible source credibility and timestamps (“updated 2 days ago”), and simple trust cues.</p>
+        <img src="assets/images/persona 1.jpg" alt="Persona: Anna — Curious Tourist" />
 
-        <img src="assets/images/persona 2.jpg" alt="Local Discoverer">
-        <h3>Local Discoverer</h3>
-        <p>After-work options near home; up-to-date events and cafés.</p>
+        <h3>Marc — The Local Explorer</h3>
+        <p><strong>Goals:</strong> Discover real local events beyond the tourist trail, see what’s nearby <em>right now</em>, filter by distance/type/freshness, contribute updates, and understand how the system learns his tastes.</p>
+        <p><strong>Key Requirements:</strong> Powerful distance and freshness filters, easy uploads for users/businesses, transparent personalization (“we learned you like art shows…”), trust badges, and simple sharing.</p>
+        <img src="assets/images/persona 2.jpg" alt="Persona: Marc — Local Explorer" />
 
-        <img src="assets/images/persona 3.jpg" alt="Family Planner">
-        <h3>Family Planner</h3>
-        <p>Kid-friendly activities, clear pricing, and simple directions.</p>
+        <h3>Sarah — The Family Planner</h3>
+        <p><strong>Goals:</strong> Find safe, kid-friendly options with clear accessibility, pricing, and parking info; ensure info is reliable and recent; and book directly when possible.</p>
+        <p><strong>Key Requirements:</strong> Verified “Family-Friendly” tag, filters for cost/distance/accessibility, direct booking integrations, freshness indicators (“verified this week”), and reassuring, plain language.</p>
+        <img src="assets/images/persona 3.jpg" alt="Persona: Sarah — Family Planner" />
+
+        <h3>Universal Goals & Requirements</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Category</th>
+                <th>Goals / Needs</th>
+                <th>Design & AI Requirements</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><strong>Transparency & Trust</strong></td>
+                <td>Understand why something is recommended.</td>
+                <td>“Explain Recommendation” panel with reasoning, sources, and confidence.</td>
+            </tr>
+            <tr>
+                <td><strong>Actionability</strong></td>
+                <td>Act immediately (book, navigate, share).</td>
+                <td>Buttons: “Book now,” “Check availability,” “View on Map,” “Get Directions.”</td>
+            </tr>
+            <tr>
+                <td><strong>Freshness & Accuracy</strong></td>
+                <td>See current, verified info.</td>
+                <td>Timestamps and community/business verification on listings.</td>
+            </tr>
+            <tr>
+                <td><strong>Localization</strong></td>
+                <td>Respect Montréal’s bilingual/cultural context.</td>
+                <td>English/French UI; highlight local culture, seasons, and neighborhoods.</td>
+            </tr>
+            <tr>
+                <td><strong>Privacy & Control</strong></td>
+                <td>Know how preferences are used.</td>
+                <td>Clear privacy notes (“Your data tailors recommendations”).</td>
+            </tr>
+            <tr>
+                <td><strong>Ease of Use</strong></td>
+                <td>Find relevant activities quickly.</td>
+                <td>Simplified onboarding, chatbot guidance, intuitive navigation.</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>Design Principles</h3>
+        <ul>
+            <li><strong>Explain, don’t overwhelm:</strong> Show reasoning in plain, human language.</li>
+            <li><strong>Empower action:</strong> Every suggestion comes with a clear next step.</li>
+            <li><strong>Stay current:</strong> Keep content fresh and visibly verified.</li>
+            <li><strong>Feel local:</strong> Reflect Montréal’s culture and community input.</li>
+            <li><strong>Be inclusive:</strong> Seamless bilingual support with accessible patterns.</li>
+        </ul>
     </section>
 
-    <hr>
+    <hr />
 
-    <!-- ===== Prototype ===== -->
+    <!-- ===== 4. Prototype ===== -->
     <section id="prototype">
         <h2>Prototyping</h2>
-        <p>Low-fidelity sketches and high-fidelity mockups were created to test layout, clarity, and flow.</p>
-        <img src="assets/images/wireframe.png" alt="Wireframe Mockup">
-        <img src="assets/images/hifi.png" alt="High-fidelity Mockup">
+        <p>We produced low-fi sketches and high-fi mockups to validate clarity, trust cues, and action flow. The prototype surfaces explainable AI reasons, clear sources, and one-tap actions for every recommendation.</p>
+        <img src="assets/images/wireframe.png" alt="Wireframe mockups" />
+        <img src="assets/images/hifi.png" alt="High-fidelity mockups" />
     </section>
 
 </main>
@@ -291,15 +306,16 @@
 </footer>
 
 <script>
-    // Active link highlight on scroll
+    // Keep active menu highlight in sync with scroll position
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".menu a");
 
     window.addEventListener("scroll", () => {
       let current = "";
       sections.forEach(section => {
-        const sectionTop = section.offsetTop - parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-offset'));
-        if (scrollY >= sectionTop) current = section.getAttribute("id");
+        const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-offset')) || 120;
+        const top = section.offsetTop - offset;
+        if (scrollY >= top) current = section.getAttribute("id");
       });
       navLinks.forEach(a => {
         a.classList.remove("active");
@@ -307,6 +323,5 @@
       });
     });
 </script>
-
 </body>
 </html>
